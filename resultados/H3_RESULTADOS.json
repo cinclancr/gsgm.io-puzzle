@@ -1,0 +1,198 @@
+{
+ "sesion": "L-errata-consolidacion",
+ "fecha": "2026-11-23",
+ "hipotesis": "H3 (FASE32_HIPOTESIS.md): 2422 B en cuadrícula 14 columnas, extracción prima",
+ "input": {
+  "bytes": 2422,
+  "sha256": "b82afeb86f9e50848220f9b64b744b821400308aea273a1c949b9d2d0e408a34",
+  "filas": 173,
+  "columnas": 14,
+  "identidad_aritmetica": "2422 = 14 × 173; 173 es el primo nº 40"
+ },
+ "variantes_totales": 16,
+ "espacio": "filas/columnas/celdas/posiciones × {1-based, 0-based} × {directo, inverso} (16 ≥ las 14 variantes declaradas) + filtros solo-letras/solo-dígitos",
+ "objetivos": {
+  "payload60_letras": {
+   "longitud": 60,
+   "sha256": "21cbfa185f92492652ec5c40ba29b2f29f65804f8bd285c0de7685a2aad53109"
+  },
+  "payload60_digitos": {
+   "longitud": 60,
+   "sha256": "6087fbd65fc3273a456248fdc62465a2805373e277679a62c3168ecc01a15990"
+  },
+  "dbbi_91": {
+   "longitud": 91,
+   "sha256": "71fe46259e270c113529dfaded4b59c59a9dffd826a7202ab07fc498b6a2c5ca"
+  },
+  "faed_570": {
+   "longitud": 570,
+   "sha256": "066191b4aafc114fbca7f0d168382f40129c4ff18490375b689741081d5ef3c2"
+  }
+ },
+ "control_comparador": "OK (auto-prueba exacta: payload60 detectado contra sí mismo)",
+ "coincidencias_exactas": [],
+ "contenciones_parciales": {},
+ "veredicto": "NEGATIVA",
+ "variantes": [
+  {
+   "nombre": "filas_primas_1based_directo",
+   "modo": "filas_primas",
+   "indexacion": "1-based",
+   "direccion": "directo",
+   "longitud": 560,
+   "imprimible": 0.65,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "columnas_primas_1based_directo",
+   "modo": "columnas_primas",
+   "indexacion": "1-based",
+   "direccion": "directo",
+   "longitud": 1038,
+   "imprimible": 0.5857,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "celdas_ambas_primas_1based_directo",
+   "modo": "celdas_ambas_primas",
+   "indexacion": "1-based",
+   "direccion": "directo",
+   "longitud": 240,
+   "imprimible": 0.65,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "posiciones_globales_primas_1based_directo",
+   "modo": "posiciones_globales_primas",
+   "indexacion": "1-based",
+   "direccion": "directo",
+   "longitud": 359,
+   "imprimible": 0.6379,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "filas_primas_0based_directo",
+   "modo": "filas_primas",
+   "indexacion": "0-based",
+   "direccion": "directo",
+   "longitud": 546,
+   "imprimible": 0.6007,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "columnas_primas_0based_directo",
+   "modo": "columnas_primas",
+   "indexacion": "0-based",
+   "direccion": "directo",
+   "longitud": 1038,
+   "imprimible": 0.5973,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "celdas_ambas_primas_0based_directo",
+   "modo": "celdas_ambas_primas",
+   "indexacion": "0-based",
+   "direccion": "directo",
+   "longitud": 234,
+   "imprimible": 0.6111,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "posiciones_globales_primas_0based_directo",
+   "modo": "posiciones_globales_primas",
+   "indexacion": "0-based",
+   "direccion": "directo",
+   "longitud": 359,
+   "imprimible": 0.6462,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "filas_primas_1based_inverso",
+   "modo": "filas_primas",
+   "indexacion": "1-based",
+   "direccion": "inverso",
+   "longitud": 560,
+   "imprimible": 0.6179,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "columnas_primas_1based_inverso",
+   "modo": "columnas_primas",
+   "indexacion": "1-based",
+   "direccion": "inverso",
+   "longitud": 1038,
+   "imprimible": 0.5925,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "celdas_ambas_primas_1based_inverso",
+   "modo": "celdas_ambas_primas",
+   "indexacion": "1-based",
+   "direccion": "inverso",
+   "longitud": 240,
+   "imprimible": 0.625,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "posiciones_globales_primas_1based_inverso",
+   "modo": "posiciones_globales_primas",
+   "indexacion": "1-based",
+   "direccion": "inverso",
+   "longitud": 359,
+   "imprimible": 0.6435,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "filas_primas_0based_inverso",
+   "modo": "filas_primas",
+   "indexacion": "0-based",
+   "direccion": "inverso",
+   "longitud": 546,
+   "imprimible": 0.6117,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "columnas_primas_0based_inverso",
+   "modo": "columnas_primas",
+   "indexacion": "0-based",
+   "direccion": "inverso",
+   "longitud": 1038,
+   "imprimible": 0.5732,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "celdas_ambas_primas_0based_inverso",
+   "modo": "celdas_ambas_primas",
+   "indexacion": "0-based",
+   "direccion": "inverso",
+   "longitud": 234,
+   "imprimible": 0.5983,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  },
+  {
+   "nombre": "posiciones_globales_primas_0based_inverso",
+   "modo": "posiciones_globales_primas",
+   "indexacion": "0-based",
+   "direccion": "inverso",
+   "longitud": 359,
+   "imprimible": 0.5961,
+   "coincidencias_exactas": [],
+   "contenciones_parciales": []
+  }
+ ]
+}

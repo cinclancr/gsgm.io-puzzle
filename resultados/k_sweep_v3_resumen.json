@@ -1,0 +1,66 @@
+{
+ "fuente": "scripts/k_sweep_v3_results.json (archivo local completo, no hospedado)",
+ "sha256_fuente": "8c5b4f73a014cf5f282555f8c2f796279088d377d3c65bf09526aae02e1681a1",
+ "evp": {
+  "eventos": 6129,
+  "pad_dist": {
+   "1": 6109,
+   "2": 19,
+   "16": 1
+  }
+ },
+ "pbkdf2": {
+  "eventos": 254,
+  "pad_dist": {
+   "1": 253,
+   "2": 1
+  }
+ },
+ "stream": {
+  "eventos": 0,
+  "pad_dist": {}
+ },
+ "counts": {
+  "urlblob": 669,
+  "demo_073f31b317bd0cf2": 685,
+  "demo_34a5901a53543d6a": 677,
+  "demo_5795984be273dbe0": 686,
+  "demo_aa46dd00cc230e6c": 625,
+  "demo_63686f6963656973": 715,
+  "demo_4a4a51c1562d7db7": 704,
+  "demo_ab583398aaa4500d": 701,
+  "demo_89a874865e2c798c": 667
+ },
+ "combinado_evp_pbkdf2": {
+  "eventos": 6383,
+  "pad_dist": {
+   "1": 6362,
+   "2": 20,
+   "16": 1
+  }
+ },
+ "urlblob_solo": {
+  "eventos": 695,
+  "pad_dist": {
+   "1": 693,
+   "2": 2
+  }
+ },
+ "pad16_control": [
+  {
+   "env": "demo_63686f6963656973",
+   "cand": "uncertainty",
+   "printable": 0.771
+  }
+ ],
+ "urlblob_pad2_eventos": [
+  {
+   "cand": "tools\\",
+   "printable": 0.372
+  },
+  {
+   "cand": "lastwordsbeforearchichoicethispasswordsecondanswermatrixsumliste",
+   "printable": 0.415
+  }
+ ]
+}

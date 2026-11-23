@@ -1,0 +1,98 @@
+{
+ "sesion": "L-errata",
+ "fecha": "2026-11-23",
+ "objeto": "AUDITORIA_CRITICA.md §3.2/§3.3 — correcciones con evidencia",
+ "erratas": {
+  "E1_distribucion_barrido_v3": {
+   "texto_original": "«La distribución completa del barrido v3: 6.129 eventos = 6.362 pad-1 + 20 pad-2 + 1 pad-16»",
+   "defecto": "6.362+20+1 = 6.383 ≠ 6.129 (un subconjano no puede superar al total)",
+   "valores_reales": {
+    "evp": {
+     "eventos": 6129,
+     "pad_dist": {
+      "1": 6109,
+      "2": 19,
+      "16": 1
+     },
+     "suma_ok": true
+    },
+    "evp_pbkdf2": {
+     "eventos": 6383,
+     "pad_dist": {
+      "1": 6362,
+      "2": 20,
+      "16": 1
+     },
+     "suma_ok": true
+    }
+   },
+   "lectura_correcta": "EVP solo: 6.129 = 6.109 pad-1 + 19 pad-2 + 1 pad-16; completa (EVP+PBKDF2): 6.383 = 6.362 pad-1 + 20 pad-2 + 1 pad-16",
+   "veredicto": "CONFIRMADA"
+  },
+  "E2_alcance_barrido_v3": {
+   "texto_original": "§3.3 discute urlblob y presenta «6.129/6.383» sin declarar que el barrido v3 cubrió 9 sobres",
+   "defecto": "el total 6.129/6.383 es de TODOS los sobres del barrido (urlblob + 8 demos); urlblob solo = 669 EVP + 26 PBKDF2 = 695 eventos (693 pad-1 + 2 pad-2, 0 pad-16)",
+   "sobres_del_barrido": {
+    "urlblob": 669,
+    "demo_073f31b317bd0cf2": 685,
+    "demo_34a5901a53543d6a": 677,
+    "demo_5795984be273dbe0": 686,
+    "demo_aa46dd00cc230e6c": 625,
+    "demo_63686f6963656973": 715,
+    "demo_4a4a51c1562d7db7": 704,
+    "demo_ab583398aaa4500d": 701,
+    "demo_89a874865e2c798c": 667
+   },
+   "urlblob_evp": 669,
+   "urlblob_total_v3": {
+    "eventos": 695,
+    "pad_dist": {
+     "1": 693,
+     "2": 2
+    },
+    "suma_ok": true
+   },
+   "urlblob_pad2": [
+    {
+     "cand": "tools\\",
+     "printable": 0.372
+    },
+    {
+     "cand": "lastwordsbeforearchichoicethispasswordsecondanswermatrixsumliste",
+     "printable": 0.415
+    }
+   ],
+   "suplemento_informe_K": "SALPH_SESION_K §5 «669 eventos padding-válidos, todos pad=1» es contradicho por los 2 eventos pad-2 de urlblob (candidatos «tools\\\\» imprimible 0,372 y «lastwordsbefore…secondanswer…matrixsumliste» imprimible 0,415 — ruido); la nota de la propia auditoría (684 acumulados vs 669 v3) queda como está.",
+   "veredicto": "CONFIRMADA"
+  },
+  "E3_longitud_preimagen": {
+   "texto_original": "§3.2: «la preimagen real es humphhope…weakness (100 chars — la cita completa de la película…)»",
+   "defecto": "la preimagen correcta mide 109 chars, no 100",
+   "longitud_real": 109,
+   "sha256_completa": "10d6a2c5320bfbd47d35f18dd67f177ae5a5f4b5d18a8a5127361c2941a92908",
+   "coincide_con_10d6a2c5": true,
+   "sha256_forma_truncada": "f156d167c3cd74757435a88de20ed5ba401abca9e03bfb79ebbade799d808bd5",
+   "truncada_es_f156d167": true,
+   "nota": "el HASH citado por la auditoría es correcto; solo la ANOTACIÓN de longitud (100) es errónea",
+   "veredicto": "CONFIRMADA"
+  }
+ },
+ "positivos": {
+  "P1_anstoo": {
+   "sha256": "21ef053324184a4db5dc19b760e2d6ef61b07376a6f8a1514bb529d99de1fe0f",
+   "prefijo_esperado": "21ef053324184a4d",
+   "ok": true
+  },
+  "P2_plaintext_fase32": {
+   "bytes": 2422,
+   "sha256": "b82afeb86f9e50848220f9b64b744b821400308aea273a1c949b9d2d0e408a34",
+   "esperado": "b82afeb86f9e50848220f9b64b744b821400308aea273a1c949b9d2d0e408a34",
+   "ok": true
+  },
+  "P3_ancla_barrido_v3": {
+   "sha256_fuente": "8c5b4f73a014cf5f282555f8c2f796279088d377d3c65bf09526aae02e1681a1",
+   "ok": true
+  }
+ },
+ "veredicto_global": "ERRATAS CONFIRMADAS: E1=CONFIRMADA, E2=CONFIRMADA, E3=CONFIRMADA | positivos: P1_anstoo=OK, P2_plaintext_fase32=OK, P3_ancla_barrido_v3=OK"
+}

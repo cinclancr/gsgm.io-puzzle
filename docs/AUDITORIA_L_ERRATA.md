@@ -4,10 +4,11 @@
 objetiva de `AUDITORIA_CRITICA.md` contra los datos subyacentes; corrección por
 documento + evidencia + commit; el texto original se conserva sin reescribir.**
 
-Resultado de la re-verificación: **3 erratas de anotación confirmadas** (E1–E3),
-**3 positivos confirmados** (P1–P3) y ninguna afectación a las conclusiones de la
-auditoría (§7). Evidencia reproducible: `scripts/l_errata_evidence.py` →
-`resultados/L_ERRATA_EVIDENCIA.json`.
+Resultado de la re-verificación: **4 erratas confirmadas** (E1–E4; E4 añadida en
+la consolidación del 2026-11-27), **3 positivos confirmados** (P1–P3) y ninguna
+afectación a las conclusiones de la auditoría (§7). Evidencia reproducible:
+`scripts/l_errata_evidence.py` → `resultados/L_ERRATA_EVIDENCIA.json` (E1–E3) y
+`resultados/L_ERRATA_E4_EVIDENCIA.json` (E4).
 
 ---
 
@@ -69,6 +70,34 @@ de 100 chars») y se corrige igualmente a «frase completa de 109 chars».
 
 ---
 
+## E4 — Colisión de IDs N60–N63 del libro mayor de negativas (§6/§7/§9) — añadida 2026-11-27
+
+**Defecto:** la auditoría L registró sus 4 familias de negativos como **N60–N63**
+en `PRUEBAS_NEGATIVAS.csv` (citadas así en §6, §7 y §9 de `AUDITORIA_CRITICA.md`),
+pero esos IDs ya estaban ocupados por filas anteriores de la sesión F
+(2026-11-22, N60–N66, presentes en el mismo libro mayor). Espacio completo de la
+serie N tras revisar todos los ledgers: `negative_ledger.csv` N01–N16 (ledger
+previo); libro mayor N17–N56 + N60–N66 (sesión F); ledger propio de la sesión H
+**N67–N75** (`H_PRUEBAS_NEGATIVAS_SESION_H.csv`, corpus local); N57–N59 citados
+en textos (sesión G / sesión D del investigador) sin filas en ledgers.
+
+**Corrección:** las 4 filas de la auditoría L pasan a **N76–N79** (primeros IDs
+libres de la serie): N60→**N76** (H1 payload60/tablero estradal), N61→**N77**
+(H4 operando 29 B / «+-»), N62→**N78** (erratum preimagen 10d6a2c5), N63→**N79**
+(erratas menores sesión K). Ningún otro campo cambia. Las citas «N60/N61» de
+§6/§7 y «+N60-N63» de §9 se leen con este mapa.
+
+**Evidencia** (`resultados/L_ERRATA_E4_EVIDENCIA.json`): detección programática
+de duplicados antes/después; libro mayor de 51 filas, rango N17–N79, sin
+duplicados ni colisiones con ningún otro ledger de la serie N. Nota de proceso:
+durante la corrección un primer writer falló a mitad de escritura y truncó el
+archivo; se recuperó con `scripts/l_ledger_recover.py` (copia historico N17–N53
+byte-verificada contra las filas supervivientes + 14 líneas de la lectura íntegra
+previa al daño) verificando que el estado recuperado reproducía exactamente el
+conteo verificado antes del daño (51 filas, duplicados N60–N63, rango N17–N63).
+
+---
+
 ## Positivos confirmados (lo que la auditoría L tiene correcto)
 
 - **P1:** `sha256("anstoo") = 21ef053324184a4d…` ✓ (re-computado).
@@ -93,4 +122,14 @@ commit, jamás reescribiendo» queda aplicada y documentada.
 
 ```bash
 python3 scripts/l_errata_evidence.py     # E1/E2/E3 CONFIRMADA + P1/P2/P3 OK
+# E4: verificación estructural del libro mayor (51 filas, N17–N79, sin duplicados)
+python3 - <<'EOF'
+import csv
+from collections import Counter
+rows = list(csv.reader(open('negativos/PRUEBAS_NEGATIVAS.csv', encoding='utf-8')))
+ids = [r[0] for r in rows[1:]]
+assert len(ids) == 51 and not [k for k, v in Counter(ids).items() if v > 1]
+assert {'N76', 'N77', 'N78', 'N79'} <= set(ids)
+print('OK')
+EOF
 ```

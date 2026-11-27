@@ -1,0 +1,40 @@
+{
+ "fecha": "2026-11-27",
+ "errata": "E4",
+ "objeto": "negativos/PRUEBAS_NEGATIVAS.csv",
+ "problema": "colisión de IDs N60-N63 entre sesión F (2026-11-22, filas ya presentes en el libro mayor) y auditoría L (2026-11-23, citadas como N60-N63 en AUDITORIA_CRITICA.md §6/§9)",
+ "espacio_ids_serie_N": {
+  "negative_ledger.csv": "N01-N16 (ledger previo)",
+  "PRUEBAS_NEGATIVAS.csv": "N17-N56, N60-N66 (sesión F) + filas L",
+  "H_PRUEBAS_NEGATIVAS_SESION_H.csv": "N67-N75 (sesión H, archivo propio)",
+  "N57-N59": "citados en textos (sesión G / sesión D del investigador), sin filas en ledgers"
+ },
+ "criterio": "la sesión F es anterior y mantiene N60-N66; la sesión H ya ocupa N67-N75 en su ledger propio; las 4 filas de la auditoría L pasan a N76-N79 (primeros IDs libres)",
+ "renumeracion_final": [
+  {
+   "original_L": "N60",
+   "despues": "N76",
+   "familia": "payload60 como dígitos de tablero estradal (H1) — NEGATIVA"
+  },
+  {
+   "original_L": "N61",
+   "despues": "N77",
+   "familia": "operando 29 B / «+-» como máscara aritmética (H4) — NEGATIVA"
+  },
+  {
+   "original_L": "N62",
+   "despues": "N78",
+   "familia": "erratum preimagen 10d6a2c5 (frase completa 100 chars)"
+  },
+  {
+   "original_L": "N63",
+   "despues": "N79",
+   "familia": "erratas menores sesión K (padding Ханыч, relleno Cereal Killer)"
+  }
+ ],
+ "filas": 51,
+ "duplicados_master": {},
+ "colisiones_con_ledger_H": [],
+ "rango_master": "N17..N79",
+ "nota_historica": "una primera corrección los movió a N67-N70 sin detectar el ledger propio de la sesión H; se corrigió a N76-N79 antes de publicar. Además, durante la corrección inicial un DictWriter falló a mitad de escritura y truncó el archivo a 24 líneas; se recuperó con l_ledger_recover.py (historico agent_zip N17-N53 byte-verificado contra las filas supervivientes + 14 líneas de la lectura íntegra previa al daño) y se verificó que el estado recuperado reproducía exactamente el conteo previo (51 filas, dups N60-N63, rango N17-N63)."
+}
